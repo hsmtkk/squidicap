@@ -5,7 +5,7 @@ RUN apt-get -y update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-COPY entrypoint.sh /opt/entrypoint.sh
+COPY httpclient/entrypoint.sh /opt/entrypoint.sh
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 
