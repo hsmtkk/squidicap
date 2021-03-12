@@ -25,7 +25,9 @@ steps:
       username: hsmtkk
       password:
         from_secret: dockerhubtoken
-      repo: hsmtkk/squidicap/httpclient
+      repo: hsmtkk/squidicap
+      tags:
+        - httpclient
   - name: icap
     depends_on:
       - dockerfilelint
@@ -35,7 +37,9 @@ steps:
       username: hsmtkk
       password:
         from_secret: dockerhubtoken
-      repo: hsmtkk/squidicap/icap
+      repo: hsmtkk/squidicap
+      tags:
+        - icap
   - name: squid4
     depends_on:
       - dockerfilelint
@@ -45,9 +49,9 @@ steps:
       username: hsmtkk
       password:
         from_secret: dockerhubtoken
-      repo: hsmtkk/squidicap/squid
+      repo: hsmtkk/squidicap
       tags:
-        - 4
+        - squid4
   - name: squid5
     depends_on:
       - dockerfilelint
@@ -57,6 +61,6 @@ steps:
       username: hsmtkk
       password:
         from_secret: dockerhubtoken
-      repo: hsmtkk/squidicap/squid
+      repo: hsmtkk/squidicap
       tags:
-        - 5
+        - squid5
