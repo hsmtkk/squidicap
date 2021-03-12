@@ -23,5 +23,7 @@ FROM ubuntu:20.04
 
 COPY --from=builder /usr/local/squid /usr/local/squid
 
+RUN chown -R nobody:nogroup /usr/local/squid/var
+
 ENTRYPOINT ["/usr/local/squid/sbin/squid", "-d", "1", "-f", "/usr/local/squid/etc/squid.conf", "-N"]
 
