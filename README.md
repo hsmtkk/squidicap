@@ -1,0 +1,2 @@
+# squidicap
+squid and ICAP
