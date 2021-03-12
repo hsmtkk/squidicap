@@ -4,15 +4,17 @@ type: docker
 name: default
 
 steps:
-  yamllint:
+  - name: yamllint
     image: sdesbure/yamllint:latest
     commands:
-      - yamllint .drone.yml
-  dockerfilelint:
+      - yamllint -d relaxed .drone.yml
+  - name: dockerfilelint
     image: hadolint/hadolint:v1.23.0
     commands:
-      - hadolint squid5/Dockerfile
-  squid5:
+      - hadolint --ignore DL3008 squid5/Dockerfile
+  - name: squid5
+    depends_on:
+      - dockerfilelint
     image: plugins/docker:19.03.8
     settings:
       dockerfile: squid5/Dockerfile
