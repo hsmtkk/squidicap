@@ -8,10 +8,46 @@ steps:
     image: sdesbure/yamllint:latest
     commands:
       - yamllint -d relaxed .drone.yml
+      - yamllint -d relaxed docker-compose.yml
   - name: dockerfilelint
     image: hadolint/hadolint:v1.23.0
     commands:
+      - hadolint --ignore DL3008 httpclient/Dockerfile
+      - hadolint --ignore DL3008 icap/Dockerfile
+      - hadolint --ignore DL3008 squid4/Dockerfile
       - hadolint --ignore DL3008 squid5/Dockerfile
+  - name: httpclient
+    depends_on:
+      - dockerfilelint
+    image: plugins/docker:19.03.8
+    settings:
+      dockerfile: httpclient/Dockerfile
+      username: hsmtkk
+      password:
+        from_secret: dockerhubtoken
+      repo: hsmtkk/squidicap/httpclient
+  - name: icap
+    depends_on:
+      - dockerfilelint
+    image: plugins/docker:19.03.8
+    settings:
+      dockerfile: icap/Dockerfile
+      username: hsmtkk
+      password:
+        from_secret: dockerhubtoken
+      repo: hsmtkk/squidicap/icap
+  - name: squid4
+    depends_on:
+      - dockerfilelint
+    image: plugins/docker:19.03.8
+    settings:
+      dockerfile: squid4/Dockerfile
+      username: hsmtkk
+      password:
+        from_secret: dockerhubtoken
+      repo: hsmtkk/squidicap/squid
+      tags:
+        - 4
   - name: squid5
     depends_on:
       - dockerfilelint
@@ -21,6 +57,6 @@ steps:
       username: hsmtkk
       password:
         from_secret: dockerhubtoken
-      repo: hsmtkk/squidicap
+      repo: hsmtkk/squidicap/squid
       tags:
         - 5
