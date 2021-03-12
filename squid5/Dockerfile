@@ -23,3 +23,5 @@ FROM ubuntu:20.04
 
 COPY --from=builder /usr/local/squid /usr/local/squid
 
+ENTRYPOINT ["/usr/local/squid/sbin/squid", "-d", "1", "-f", "/usr/local/squid/etc/squid.conf", "-N"]
+
