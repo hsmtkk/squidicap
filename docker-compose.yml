@@ -2,7 +2,9 @@ version: "3"
 services:
   httpclient:
     image: hsmtkk/squidicap:httpclient
-  icap:
+  icap4:
+    image: hsmtkk/squidicap:icap
+  icap5:
     image: hsmtkk/squidicap:icap
   squid4:
     image: hsmtkk/squidicap:squid4
@@ -11,7 +13,7 @@ services:
   squid5:
     image: hsmtkk/squidicap:squid5
     volumes:
-      - "./squid4/squid.conf:/usr/local/squid/etc/squid.conf:ro"
+      - "./squid5/squid.conf:/usr/local/squid/etc/squid.conf:ro"
   nginx:
     image: nginx:1.19.7
     volumes:
