@@ -19,6 +19,8 @@ steps:
   - name: httpclient
     depends_on:
       - dockerfilelint
+    environment:
+      DOCKER_BUILDKIT: 1
     image: plugins/docker:19.03.8
     settings:
       dockerfile: httpclient/Dockerfile
@@ -31,6 +33,8 @@ steps:
   - name: icap
     depends_on:
       - dockerfilelint
+    environment:
+      DOCKER_BUILDKIT: 1
     image: plugins/docker:19.03.8
     settings:
       dockerfile: icap/Dockerfile
@@ -43,6 +47,8 @@ steps:
   - name: squid4
     depends_on:
       - dockerfilelint
+    environment:
+      DOCKER_BUILDKIT: 1
     image: plugins/docker:19.03.8
     settings:
       dockerfile: squid4/Dockerfile
@@ -55,6 +61,8 @@ steps:
   - name: squid5
     depends_on:
       - dockerfilelint
+    environment:
+      DOCKER_BUILDKIT: 1
     image: plugins/docker:19.03.8
     settings:
       dockerfile: squid5/Dockerfile
