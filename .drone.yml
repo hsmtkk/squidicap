@@ -1,0 +1,24 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  yamllint:
+    image: sdesbure/yamllint:latest
+    commands:
+      - yamllint .drone.yml
+  dockerfilelint:
+    image: hadolint/hadolint:v1.23.0
+    commands:
+      - hadolint squid5/Dockerfile
+  squid5:
+    image: plugins/docker:19.03.8
+    settings:
+      dockerfile: squid5/Dockerfile
+      username: hsmtkk
+      password:
+        from_secret: dockerhubtoken
+      repo: hsmtkk/squidicap
+      tags:
+        - 5
