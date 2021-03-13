@@ -1,6 +1,6 @@
 FROM ubuntu:20.04 AS builder
 
-ADD http://www.squid-cache.org/Versions/v4/squid-4.14.tar.bz2 /usr/local/src/squid-4.14.tar.bz2
+ADD http://www.squid-cache.org/Versions/v5/squid-5.0.5-20210223-r4af19cc24.tar.bz2 /usr/local/src/squid-5.0.5-20210223-r4af19cc24.tar.bz2
 
 WORKDIR /usr/local/src
 
@@ -8,11 +8,14 @@ RUN apt-get -y update \
  && apt-get -y install --no-install-recommends gcc g++ make \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
- && tar jxf squid-4.14.tar.bz2
+ && tar jxf squid-5.0.5-20210223-r4af19cc24.tar.bz2
 
-WORKDIR /usr/local/src/squid-4.14
+WORKDIR /usr/local/src/squid-5.0.5-20210223-r4af19cc24
 
-RUN ./configure \
+ADD squid5patched/ServiceConfig.cc.patch /usr/local/src/squid-5.0.5-20210223-r4af19cc24/ServiceConfig.cc.patch
+
+RUN patch < ServiceConfig.cc.patch \
+ && ./configure \
  --disable-arch-native \
  --enable-icap-client \
  --prefix=/usr/local/squid \

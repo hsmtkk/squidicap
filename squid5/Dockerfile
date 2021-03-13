@@ -25,5 +25,7 @@ COPY --from=builder /usr/local/squid /usr/local/squid
 
 RUN chown -R nobody:nogroup /usr/local/squid/var
 
+EXPOSE 3128
+
 ENTRYPOINT ["/usr/local/squid/sbin/squid", "-d", "1", "-f", "/usr/local/squid/etc/squid.conf", "-N"]
 
