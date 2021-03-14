@@ -2,11 +2,7 @@ version: "3"
 services:
   httpclient:
     image: hsmtkk/squidicap:httpclient
-  icap4:
-    image: hsmtkk/squidicap:icap
-  icap5:
-    image: hsmtkk/squidicap:icap
-  icap5etchosts:
+  icap:
     image: hsmtkk/squidicap:icap
   squid4:
     image: hsmtkk/squidicap:squid4
