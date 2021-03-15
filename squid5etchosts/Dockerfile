@@ -7,7 +7,5 @@ RUN apt-get -y update \
 
 COPY squid5etchosts/entrypoint.sh /opt/entrypoint.sh
 
-EXPOSE 3128
-
 ENTRYPOINT ["/opt/entrypoint.sh"]
 
