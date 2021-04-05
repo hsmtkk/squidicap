@@ -12,15 +12,10 @@ services:
     image: hsmtkk/squidicap:squid5
     volumes:
       - "./squid5/squid.conf:/usr/local/squid/etc/squid.conf:ro"
-  squid5etchosts:
-    image: hsmtkk/squidicap:squid5etchosts
+  squid5patched:
+    image: hsmtkk/squidicap:squid5patched
     volumes:
-      - "./squid5etchosts/squid.conf:/usr/local/squid/etc/squid.conf:ro"
-  squid5rawip:
-    image: hsmtkk/squidicap:squid5rawip
-    privileged: true
-    volumes:
-      - "./squid5rawip/squid.conf.tmpl:/usr/local/squid/etc/squid.conf.tmpl:ro"
+      - "./squid5/squid.conf:/usr/local/squid/etc/squid.conf:ro"
   nginx:
     image: nginx:1.19.7
     volumes:
